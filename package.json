@@ -1,0 +1,29 @@
+{
+  "name": "passport-demo",
+  "version": "1.0.0",
+  "description": "A demo to show how passport works with twitter authentication",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "passportjs",
+    "passport-twitter",
+    "authentication"
+  ],
+  "author": "Karuppiah N <karuppiah7890@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "mongoose": "^4.9.9",
+    "nunjucks": "^3.0.0",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4"
+  }
+}
