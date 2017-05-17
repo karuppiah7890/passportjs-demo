@@ -4,7 +4,8 @@
   "description": "A demo to show how passport works with twitter authentication",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [
     "nodejs",
@@ -24,6 +25,17 @@
     "mongoose": "^4.9.9",
     "nunjucks": "^3.0.0",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karuppiah7890/passportjs-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karuppiah7890/passportjs-demo/issues"
+  },
+  "homepage": "https://github.com/karuppiah7890/passportjs-demo#readme"
 }

@@ -6,7 +6,8 @@
   </head>
   <body>
     {% if user %}
-      Welcome {{ user.username }}!
+      Welcome {{ user.displayName }}! <br><br>
+      <a href="/logout"><button>Log out?</button></a><br>
     {% else %}
       <a href="/login"><button>Sign In</button></a><br>
       <a href="/signup"><button>Sign Up?</button></a>

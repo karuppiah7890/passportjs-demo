@@ -20,7 +20,7 @@ app.use(require('express-session')({ secret: 'Karuppiah is a coder', resave: fal
 auth.init(app);
 
 app.get('/', (req,res) => {
-  console.log("User : ",req.user);
+  console.log("Request from User : ",req.user);
   res.render('index.html', {user: req.user});
 })
 

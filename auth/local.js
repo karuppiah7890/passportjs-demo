@@ -1,6 +1,6 @@
 module.exports = function(passport, db) {
-  const passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
+
+  const LocalStrategy = require('passport-local').Strategy,
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 

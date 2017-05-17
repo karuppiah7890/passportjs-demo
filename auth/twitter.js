@@ -11,18 +11,22 @@ module.exports = function(passport, db) {
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: `http://localhost:${PORT}/auth/twitter/callback`
+      callbackURL: `http://localhost:${PORT}${returnPath}`
     },
     function(token, tokenSecret, profile, done) {
-      //console.log(token, "\n\n", tokenSecret, "\n\n", profile);
-      User.findOne({id: profile.id, username: profile.username})
+      console.log("User profile : ",profile);
+      User.findOne({id: profile.id, provider: profile.provider})
       .then((result) => {
-          console.log("result in twitter Strategy", result);
           if(result) {
+            //console.log("found twitter user in db", result);
             done(null, result);
           } else {
-            User.create(profile);
-            done(null, profile);
+            //console.log("inserting twitter user to db", result);
+            User.create(profile)
+            .then((result) => {
+              done(null, result);
+            })
+            .catch(err => done(err))
           }
       })
       .catch((err) => {
@@ -37,7 +41,7 @@ module.exports = function(passport, db) {
 
         app.get(returnPath,
                   passport.authenticate('twitter',
-                            { successReturnToOrRedirect: '/', failureRedirect: '/auth/twitter' }));
+                            { successReturnToOrRedirect: '/', failureRedirect: path }));
       }
   }
 

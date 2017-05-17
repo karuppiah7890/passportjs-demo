@@ -1,7 +1,9 @@
 module.exports = function(db) {
 
   const passport = require('passport');
+  const local = require('./local')(passport, db);
   const twitter = require('./twitter')(passport, db);
+  const facebook = require('./facebook')(passport, db);
   const sessions = require('./sessions');
   sessions(passport,db);
 
@@ -18,7 +20,9 @@ module.exports = function(db) {
         res.render('login.html');
       });
 
+      local.routes(app);
       twitter.routes(app);
+      facebook.routes(app);
 
       app.get('/logout', function(req, res){
         req.logout();

@@ -3,23 +3,24 @@ module.exports = function(passport, db) {
     User = mongoose.model('User');
 
   passport.serializeUser(function(profile, done) {
-    console.log('Store the user id : ', profile.id, ' and username in session data store');
+    console.log('Store the user id:', profile.id, ' and provider:', profile.provider,' in session data store');
     const sessionData = {
       id: profile.id,
-      username: profile.username
+      provider: profile.provider
     };
     done(null, sessionData);
   });
 
   passport.deserializeUser(function(sessionData, done) {
+    //console.log("got session id. found session data : ", sessionData);
     // find user using ID stored in session data store and fill in user details in done
-    User.findOne({id: sessionData.id, username: sessionData.username})
+    User.findOne({id: sessionData.id, provider: sessionData.provider})
     .then((result) => {
-        console.log("got session id. found in sessions : ", result);
+        //console.log("got user data through session data : ", result);
         if(result) {
           done(null, result);
         } else {
-          done(null, false);
+          done(null, null);
         }
     })
     .catch((err) => {
