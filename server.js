@@ -4,6 +4,7 @@ const db = require('./db');
 const nunjucks = require('nunjucks');
 const ensureLogin = require('connect-ensure-login');
 const auth = require('./auth')(db);
+const flash = require('connect-flash');
 
 const PORT = process.env.PORT ||  3000;
 
@@ -16,6 +17,7 @@ app.use(express.static('public'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'Karuppiah is a coder', resave: false, saveUninitialized: false }));
+app.use(flash());
 
 auth.init(app);
 
