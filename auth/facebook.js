@@ -11,7 +11,8 @@ module.exports = function(passport, db) {
   passport.use(new FacebookStrategy({
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: `http://localhost:${PORT}${returnPath}`
+      callbackURL: `http://localhost:${PORT}${returnPath}`,
+      profileFields: ['id', 'displayName', 'photos', 'email']
     },
     function(accessToken, refreshToken, profile, done) {
       console.log("User profile : ",profile);
@@ -38,7 +39,8 @@ module.exports = function(passport, db) {
   return {
     routes: function(app) {
 
-      app.get(path, passport.authenticate('facebook'));
+      app.get(path, passport.authenticate('facebook',
+                        { authType: 'rerequest', scope: ['email'] }));
 
       app.get(returnPath,
                 passport.authenticate('facebook',
