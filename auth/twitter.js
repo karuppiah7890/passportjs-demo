@@ -1,6 +1,4 @@
-module.exports = function(passport) {
-
-  const PORT = process.env.PORT ||  3000;
+module.exports = function(passport, config) {
 
   const TwitterStrategy = require('passport-twitter').Strategy,
         path = '/auth/twitter',
@@ -11,7 +9,7 @@ module.exports = function(passport) {
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: `http://localhost:${PORT}${returnPath}`
+      callbackURL: `${config.serverUrl}${returnPath}`
     },
     function(token, tokenSecret, profile, done) {
       console.log("User profile : ",profile);

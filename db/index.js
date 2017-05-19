@@ -1,16 +1,20 @@
-const mongoose = require('mongoose');
+module.exports = function(config) {
 
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.PASSPORTDB_MONGO_URL);
+  const mongoose = require('mongoose');
 
-const connection = mongoose.connection;
+  mongoose.Promise = global.Promise;
+  mongoose.connect(config.mongoUrl);
 
-connection.on('error', function(err) {
-  console.error(err);
-});
+  const connection = mongoose.connection;
 
-connection.once('open', function() {
-  console.log('Connected to MongoDB!');
-})
+  connection.on('error', function(err) {
+    console.error(err);
+  });
 
-require('./user');
+  connection.once('open', function() {
+    console.log('Connected to MongoDB!');
+  })
+
+  require('./user');
+
+}

@@ -1,6 +1,4 @@
-module.exports = function(passport) {
-
-  const PORT = process.env.PORT ||  3000;
+module.exports = function(passport, config) {
 
   const FacebookStrategy = require('passport-facebook').Strategy,
     path = '/auth/facebook',
@@ -11,7 +9,7 @@ module.exports = function(passport) {
   passport.use(new FacebookStrategy({
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: `http://localhost:${PORT}${returnPath}`,
+      callbackURL: `${config.serverUrl}${returnPath}`,
       profileFields: ['id', 'displayName', 'photos', 'email']
     },
     function(accessToken, refreshToken, profile, done) {

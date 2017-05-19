@@ -1,12 +1,14 @@
+const PORT = process.env.PORT ||  3000;
+
+const config = require('./config')(PORT)[process.env.APP_ENV];
+
 const express = require('express');
 const app = express();
-const db = require('./db');
+const db = require('./db')(config);
 const nunjucks = require('nunjucks');
 const ensureLogin = require('connect-ensure-login');
-const auth = require('./auth')();
+const auth = require('./auth')(config);
 const flash = require('connect-flash');
-
-const PORT = process.env.PORT ||  3000;
 
 nunjucks.configure('views',{
   autoescaping: true,

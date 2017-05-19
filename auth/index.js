@@ -1,12 +1,12 @@
-module.exports = function() {
+module.exports = function(config) {
 
 
   const mongoose = require('mongoose'),
   User = mongoose.model('User'),
   passport = require('passport'),
   local = require('./local')(passport),
-  twitter = require('./twitter')(passport),
-  facebook = require('./facebook')(passport),
+  twitter = require('./twitter')(passport, config),
+  facebook = require('./facebook')(passport, config),
   sessions = require('./sessions');
   sessions(passport);
 
