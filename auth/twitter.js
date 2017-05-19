@@ -1,4 +1,4 @@
-module.exports = function(passport, db) {
+module.exports = function(passport) {
 
   const PORT = process.env.PORT ||  3000;
 

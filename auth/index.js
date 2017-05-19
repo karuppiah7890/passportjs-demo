@@ -1,14 +1,14 @@
-module.exports = function(db) {
+module.exports = function() {
 
 
   const mongoose = require('mongoose'),
   User = mongoose.model('User'),
   passport = require('passport'),
-  local = require('./local')(passport, db),
-  twitter = require('./twitter')(passport, db),
-  facebook = require('./facebook')(passport, db),
+  local = require('./local')(passport),
+  twitter = require('./twitter')(passport),
+  facebook = require('./facebook')(passport),
   sessions = require('./sessions');
-  sessions(passport,db);
+  sessions(passport);
 
   return {
     init: function(app) {

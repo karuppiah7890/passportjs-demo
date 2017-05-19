@@ -3,7 +3,7 @@ const app = express();
 const db = require('./db');
 const nunjucks = require('nunjucks');
 const ensureLogin = require('connect-ensure-login');
-const auth = require('./auth')(db);
+const auth = require('./auth')();
 const flash = require('connect-flash');
 
 const PORT = process.env.PORT ||  3000;

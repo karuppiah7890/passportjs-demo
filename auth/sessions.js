@@ -1,4 +1,4 @@
-module.exports = function(passport, db) {
+module.exports = function(passport) {
   const mongoose = require('mongoose'),
     User = mongoose.model('User');
 
