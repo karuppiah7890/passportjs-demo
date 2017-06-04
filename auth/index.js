@@ -17,7 +17,7 @@ module.exports = function(config) {
       app.use(passport.session());
 
       app.get('/login', (req,res) => {
-        res.render('login.html', { message: req.flash('failureFlash') });
+        res.render('login.html', { message: req.flash('message') });
       });
 
       local.routes(app);

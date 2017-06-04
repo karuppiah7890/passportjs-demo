@@ -5,14 +5,17 @@ module.exports = function(passport) {
     User = mongoose.model('User');
 
 
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
+  passport.use(new LocalStrategy({
+    passReqToCallback : true
+  },
+  function(req, username, password, done) {
       User.findOne({username: username, password: password})
       .then((result) => {
           if(result) {
             //console.log("found local user in db", result);
             done(null, result);
           } else {
+            req.flash('message','Invalid username or password');
             done(null, false);
           }
       })
@@ -26,8 +29,7 @@ module.exports = function(passport) {
     routes: function(app) {
       app.post('/login',
                 passport.authenticate('local', { successRedirect: '/',
-                                                 failureRedirect: '/login',
-                                                 failureFlash : "Invalid username or password" }));
+                                                 failureRedirect: '/login'}));
 
        app.get('/signup', (req,res) => {
          res.render('signup.html', { message: req.flash('info') });
