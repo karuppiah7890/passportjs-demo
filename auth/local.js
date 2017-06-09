@@ -28,7 +28,7 @@ module.exports = function(passport) {
   return {
     routes: function(app) {
       app.post('/login',
-                passport.authenticate('local', { successRedirect: '/',
+                passport.authenticate('local', { successReturnToOrRedirect: '/',
                                                  failureRedirect: '/login'}));
 
        app.get('/signup', (req,res) => {
